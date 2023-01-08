@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CuprodemyApplication<casaMarruecos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "net.ausiasmarch.cuprodemy.CuprodemyApplication",
+            "projectName": "casaMarruecos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
