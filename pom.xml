@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>net.ausiasmarch</groupId>
-    <artifactId>casaMarruecos</artifactId>
+    <artifactId>cuprodemy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>casaMarruecos</name>
+    <name>cuprodemy</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
