@@ -28,8 +28,8 @@ public class UserService {
 
     private final String DNI_LETTERS = "TRWAGMYFPDXBNJZSQVHLCKE";
     private final List<String> names = List.of("Ainhoa", "Kevin", "Estefania", "Cristina",
-            "Jose Maria", "Lucas Ezequiel", "Carlos", "Elliot", "Alexis", "Ruben", "Luis Fernando", "Karim", "Luis",
-            "Jose David", "Nerea", "Ximo", "Iris", "Alvaro", "Mario", "Raimon");
+            "Jose", "Lucas", "Carlos", "Elliot", "Alexis", "Ruben", "Luis", "Karim", "Luis",
+            "David", "Nerea", "Ximo", "Iris", "Alvaro", "Mario", "Raimon");
 
     private final List<String> surnames = List.of("Benito", "Blanco", "Boriko", "Carrascosa", "Guerrero", "Gyori",
             "Lazaro", "Luque", "Perez", "Perez", "Perez", "Rezgaoui", "Rodríguez", "Rosales", "Soler", "Soler", "Suay", "Talaya", "Tomas", "Vilar");
