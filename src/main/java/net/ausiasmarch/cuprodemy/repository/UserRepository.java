@@ -15,7 +15,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>{
 
     UserEntity findByNicknameAndPass(String nickname, String pass);
 
-    
     boolean existsByNickname(String usuario);
     
     @Query(value = "SELECT * FROM usuario WHERE id_tipousuario = ?1 AND (nombre LIKE %?3% OR apellido1 LIKE %?4% OR apellido2 LIKE %?5%)", nativeQuery = true)

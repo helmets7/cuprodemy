@@ -73,5 +73,9 @@ public class LeccionEntity {
         return cursos.size();
     }
 
+
+    public void setPass(String cUPRODEMY_DEFAULT_PASSWORD) {
+    }
+
     
 }

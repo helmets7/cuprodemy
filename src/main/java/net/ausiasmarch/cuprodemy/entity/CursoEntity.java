@@ -99,8 +99,8 @@ public class CursoEntity {
         return duracion;
     }
 
-    public void setDuracion(Time duracion) {
-        this.duracion = duracion;
+    public void setDuracion(Time time) {
+        this.duracion = time;
     }
 
     public LeccionEntity getLeccion() {
@@ -117,6 +117,12 @@ public class CursoEntity {
 
     public int getUsuariocursos() {
         return usuariocursos.size();
+    }
+
+    public void setName(String string) {
+    }
+
+    public void setPass(String cUPRODEMY_DEFAULT_PASSWORD) {
     }
 
     
