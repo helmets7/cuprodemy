@@ -10,6 +10,18 @@ import net.ausiasmarch.cuprodemy.entity.ComentarioEntity;
 @Repository
 public interface ComentarioRepository extends JpaRepository<ComentarioEntity, Long>{
 
-    Page<ComentarioEntity> findByUsuarioIgnoreCaseContaining(String strFilter, Pageable oPageable);
-    
+    Page<ComentarioEntity> findByTipocomentario(Pageable oPageable, Long id_tipocomentario);
+
+    Page<ComentarioEntity> findByUsuario(Pageable oPageable, Long id_usuario);
+
+    Page<ComentarioEntity> findByCurso(Pageable oPageable, Long id_curso);
+
+    Page<ComentarioEntity> findByCursoAndTipocomentario(Pageable oPageable, Long id_curso, Long id_tipocomentario);
+
+    Page<ComentarioEntity> findByCursoAndUsuario(Pageable oPageable, Long id_curso, Long id_usuario);
+
+    Page<ComentarioEntity> findByUsuarioAndTipocomentario(Pageable oPageable, Long id_usuario, Long id_tipocomentario);
+
+    Page<ComentarioEntity> findByCursoAndUsuarioAndTipocomentario(Pageable oPageable, Long id_curso, Long id_usuario, Long id_tipocomentario);
+
 }

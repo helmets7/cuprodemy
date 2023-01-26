@@ -11,17 +11,15 @@ import net.ausiasmarch.cuprodemy.entity.CursoEntity;
 @Repository
 public interface CursoRepository extends JpaRepository<CursoEntity, Long>{
 
-    CursoEntity findByNombre(String nombre);
 
 
-    boolean existsByNombre(String curso);
-
-
-    Page<CursoEntity> findByNombreIgnoreCaseContaining(String nombre, Pageable oPageable);
-
+    Page<CursoEntity> findByNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(
+            Long id_leccion, String nombre, String descripcion, Pageable oPageable);
 
     Page<CursoEntity> findByLeccionId(Long id_leccion, Pageable oPageable);
 
 
-    Page<CursoEntity> findByNombreIgnoreCaseContainingAndLeccionId(String strFilter, Long id_leccion, Pageable oPageable);
+
+Page<CursoEntity> findByLeccionIdOrNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(Long id_leccion,
+                String nombre, String descripcion, Pageable oPageable);
 }

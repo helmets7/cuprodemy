@@ -46,7 +46,7 @@ public class UserService {
     AuthService oAuthService;
 
     @Autowired
-    TipousuarioService oTipouserService;
+    UsertypeService oTipouserService;
 
     @Autowired
     UsertypeRepository oTipoUserRepository; 
@@ -72,21 +72,21 @@ public class UserService {
         return oUserRepository.count();
     }
 
-    public Page<UserEntity> getPage(Pageable oPageable, String strFilter, Long lTipoUser) {
+    public Page<UserEntity> getPage(Pageable oPageable, String strFilter, Long id_tipousuario) {
         oAuthService.OnlyAdmins();
         ValidationHelper.validateRPP(oPageable.getPageSize());
         Page<UserEntity> oPage = null;
-        if (lTipoUser == null) {
+        if (id_tipousuario == null) {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
                 oPage = oUserRepository.findAll(oPageable);
             } else {
-                oPage = oUserRepository.findByNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContaining(strFilter, strFilter, strFilter, oPageable);
+                oPage = oUserRepository.findByNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContainingOrDniIgnoreCaseContaining(strFilter, strFilter, strFilter, strFilter, oPageable);
             }
         } else {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
-                oPage = oUserRepository.findByTipousuarioId(lTipoUser, oPageable);
+                oPage = oUserRepository.findByTipousuarioId(id_tipousuario, oPageable);
             } else {
-                oPage = oUserRepository.findByTipousuarioIdOrNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContaining(lTipoUser, strFilter, strFilter, strFilter, oPageable);
+                oPage = oUserRepository.findByTipousuarioIdOrNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContainingOrDniIgnoreCaseContaining(id_tipousuario, strFilter, strFilter, strFilter, strFilter,oPageable);
             }
         }
         return oPage;

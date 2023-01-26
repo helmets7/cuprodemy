@@ -28,9 +28,9 @@ public class ComentarioController {
     @Autowired
     ComentarioService oComentarioService;
     
-    /* @GetMapping("/{id}")
-    public ResponseEntity<Long> get(@PathVariable(value = "id") Long id) {
-        return new ResponseEntity<Long>(oComentarioService.get(id), HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<ComentarioEntity> get(@PathVariable(value = "id") Long id) {
+        return new ResponseEntity<ComentarioEntity>(oComentarioService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
@@ -39,22 +39,25 @@ public class ComentarioController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<Long>> getPage(
+    public ResponseEntity<Page<ComentarioEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter,
-            @RequestParam(name = "descripcion", required = false) String sDescripcion) {
-        return new ResponseEntity<Page<Long>>(oComentarioService.getPage(oPageable, strFilter, sDescripcion), HttpStatus.OK);
-    }
+            @RequestParam(value = "usuario", required = false) Long id_usuario,
+            @RequestParam(value = "tipocomentario", required = false) Long id_tipocomentario,
+            @RequestParam(value = "curso", required = false) Long id_curso) {
+        return new ResponseEntity<Page<ComentarioEntity>>(oComentarioService.getPage(oPageable, strFilter, id_usuario, id_tipocomentario, id_curso), HttpStatus.OK);
+    }  
 
     @PostMapping
-    public ResponseEntity<Long> create(@RequestBody Long oNewComentarioEntity) {
+    public ResponseEntity<Long> create(@RequestBody ComentarioEntity oNewComentarioEntity) {
         return new ResponseEntity<Long>(oComentarioService.create(oNewComentarioEntity), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Long> update(@PathVariable(value = "id") Long id, @RequestBody Long oComentarioEntity) {
-        return new ResponseEntity<Long>(oComentarioService.update(id, oComentarioEntity), HttpStatus.OK);
+    @PutMapping
+    public ResponseEntity<Long> update(@RequestBody ComentarioEntity oComentarioEntity) {
+        return new ResponseEntity<Long>(oComentarioService.update(oComentarioEntity), HttpStatus.OK);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable(value = "id") Long id) {
@@ -63,8 +66,7 @@ public class ComentarioController {
 
     @PostMapping("/generate")
     public ResponseEntity<ComentarioEntity> generate() {
-        return new ResponseEntity<ComentarioEntity>(oComentarioService.generate(), HttpStatus.OK);
+        return new ResponseEntity<ComentarioEntity>(oComentarioService.generateOne(), HttpStatus.OK);
     }
-
-*/
+    
 }

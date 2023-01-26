@@ -17,11 +17,13 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>{
 
     boolean existsByNickname(String usuario);
     
-    @Query(value = "SELECT * FROM usuario WHERE id_tipousuario = ?1 AND (nombre LIKE %?3% OR apellido1 LIKE %?4% OR apellido2 LIKE %?5%)", nativeQuery = true)
-    Page<UserEntity> findByTipousuarioIdOrNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContaining(Long filtertype, String nombre, String apellido1, String apellido2, Pageable oPageable);
+    Page<UserEntity> findByTipousuarioIdOrNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContainingOrDniIgnoreCaseContaining(Long id_tipousuario, String nombre, String apellido1, String apellido2, String dni, Pageable oPageable);
 
-    Page<UserEntity> findByNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContaining(String nombre, String apellido1, String apellido2, Pageable oPageable);
 
     Page<UserEntity> findByTipousuarioId(Long tipoproducto, Pageable oPageable);
+
+    Page<UserEntity> findByNombreIgnoreCaseContainingOrApellido1IgnoreCaseContainingOrApellido2IgnoreCaseContainingOrDniIgnoreCaseContaining(
+            String nombre, String apellido1, String apellido2, String dni, Pageable oPageable);
+
 
 }

@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.cuprodemy.entity.UsertypeEntity;
-import net.ausiasmarch.cuprodemy.service.TipousuarioService;
+import net.ausiasmarch.cuprodemy.service.UsertypeService;
 
 
 
 @RestController
 @RequestMapping("/tipousuario")
-public class TipousuarioController {
+public class UsertypeController {
 
     @Autowired
-    TipousuarioService oTipousuarioService;
+    UsertypeService oTipousuarioService;
 
     @GetMapping("/{id}")
     public ResponseEntity<UsertypeEntity> get(@PathVariable(value = "id") Long id) {

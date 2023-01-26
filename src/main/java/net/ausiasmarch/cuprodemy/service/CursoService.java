@@ -1,6 +1,9 @@
 package net.ausiasmarch.cuprodemy.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
@@ -19,10 +22,6 @@ import net.ausiasmarch.cuprodemy.repository.CursoRepository;
 @Service
 public class CursoService {
 
-        private final String CUPRODEMY_DEFAULT_PASSWORD = "4298f843f830fb3cc13ecdfe1b2cf10f51f929df056d644d1bca73228c5e8f64";
-
-
-
     @Autowired
     CursoRepository oCursoRepository;
 
@@ -36,9 +35,7 @@ public class CursoService {
         }
     }
 
-
     public CursoEntity get(Long id) {
-        
         oAuthService.OnlyAdminsOrOwnUsersData(id);
         try {
             return oCursoRepository.findById(id).get();
@@ -46,29 +43,33 @@ public class CursoService {
             throw new ResourceNotFoundException("id " + id + " not exist");
         }
     }
+
     public Long count() {
         oAuthService.OnlyAdmins();
         return oCursoRepository.count();
     }
 
-
     public Page<CursoEntity> getPage(Pageable oPageable, String strFilter, Long id_leccion) {
         oAuthService.OnlyAdmins();
         ValidationHelper.validateRPP(oPageable.getPageSize());
-        if (strFilter == null || strFilter.length() == 0) {
-            if (id_leccion == null) {
-                return oCursoRepository.findAll(oPageable);
+        Page<CursoEntity> oPage = null;
+        if (id_leccion == null) {
+            if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+                oPage = oCursoRepository.findAll(oPageable);
             } else {
-                return oCursoRepository.findByLeccionId(id_leccion, oPageable);
+                oPage = oCursoRepository.findByNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(id_leccion, strFilter, strFilter, oPageable);
             }
         } else {
-            if (id_leccion == null) {
-                return oCursoRepository.findByNombreIgnoreCaseContaining(strFilter, oPageable);
+            if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+                oPage = oCursoRepository.findByLeccionId(id_leccion, oPageable);
             } else {
-                return oCursoRepository.findByNombreIgnoreCaseContainingAndLeccionId(strFilter, id_leccion, oPageable);
+                oPage = oCursoRepository.findByLeccionIdOrNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(id_leccion, strFilter, strFilter, oPageable);
             }
         }
-     }
+        return oPage;
+    }
+ 
+
     public Long create(CursoEntity oNewCursoEntity) {
         oAuthService.OnlyAdmins();
         oNewCursoEntity.setId(0L);
@@ -81,30 +82,6 @@ public class CursoService {
         validate(oCursoEntity.getId());
         oAuthService.OnlyAdminsOrOwnUsersData(oCursoEntity.getId());
         return oCursoRepository.save(oCursoEntity).getId();
-    }
-
-    @Transactional
-    private CursoEntity update4Admins(CursoEntity oUpdatedCursoEntity) {
-        CursoEntity oCursoEntity = oCursoRepository.findById(oUpdatedCursoEntity.getId()).get();
-        oCursoEntity.setNombre(oUpdatedCursoEntity.getNombre());
-        oCursoEntity.setDescripcion(oUpdatedCursoEntity.getDescripcion());
-        oCursoEntity.setMiniatura(oUpdatedCursoEntity.getMiniatura());
-        oCursoEntity.setVideoUrl(oUpdatedCursoEntity.getVideoUrl());
-        oCursoEntity.setDuracion(oUpdatedCursoEntity.getDuracion());
-        //oCursoEntity.setLeccion(oLeccionService.get(oUpdatedCursoEntity.getLeccion().getId()));
-        return oCursoRepository.save(oCursoEntity);
-    }
-
-    @Transactional
-    private CursoEntity update4Users(CursoEntity oUpdatedCursoEntity) {
-        CursoEntity oCursoEntity = oCursoRepository.findById(oUpdatedCursoEntity.getId()).get();
-        oCursoEntity.setNombre(oUpdatedCursoEntity.getNombre());
-        oCursoEntity.setDescripcion(oUpdatedCursoEntity.getDescripcion());
-        oCursoEntity.setMiniatura(oUpdatedCursoEntity.getMiniatura());
-        oCursoEntity.setVideoUrl(oUpdatedCursoEntity.getVideoUrl());
-        oCursoEntity.setDuracion(oUpdatedCursoEntity.getDuracion());
-        //oCursoEntity.setLeccion(oLeccionService.get(2L));
-        return oCursoRepository.save(oCursoEntity);
     }
 
     public Long delete(Long id) {
@@ -121,7 +98,7 @@ public class CursoService {
         }
     }
 
-    public CursoEntity generate() {
+/*     public CursoEntity generateCurso() {
         oAuthService.OnlyAdmins();
         CursoEntity oCursoEntity = new CursoEntity();
         oCursoEntity.setNombre("Curso de prueba");
@@ -129,10 +106,25 @@ public class CursoService {
         oCursoEntity.setMiniatura("Curso de prueba");
         oCursoEntity.setVideoUrl("Curso de prueba");
         //oCursoEntity.setDuracion();
-        oCursoRepository.save(oCursoEntity);
         return oCursoEntity;
 
+    } */
+/* 
+    public CursoEntity generateOne() {
+        oAuthService.OnlyAdmins();
+        return oCursoRepository.save(generateCurso());
     }
+
+    public Long generateSome(Long amount) {
+        oAuthService.OnlyAdmins();
+        List<CursoEntity> CursoToSave = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            CursoToSave.add(generateCurso());
+        }
+        oCursoRepository.saveAll(CursoToSave);
+        return oCursoRepository.count();
+    }
+ */
 
 
 

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "tipocomentario")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
-public class TipoComentarioEntity {
+public class TipocomentarioEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class TipoComentarioEntity {
     @OneToMany(mappedBy = "tipocomentario", fetch = FetchType.LAZY)
     private List<ComentarioEntity> comentarios;
 
-    public TipoComentarioEntity() {
+    public TipocomentarioEntity() {
         this.comentarios = new ArrayList<>();
     }
 
-    public TipoComentarioEntity(Long id, String tipo, List<ComentarioEntity> comentarios) {
+    public TipocomentarioEntity(Long id, String tipo, List<ComentarioEntity> comentarios) {
         this.id = id;
         this.tipo = tipo;
         this.comentarios = new ArrayList<>();

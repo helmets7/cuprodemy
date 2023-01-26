@@ -18,51 +18,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.ausiasmarch.cuprodemy.entity.LeccionEntity;
-import net.ausiasmarch.cuprodemy.service.LeccionService;
+import net.ausiasmarch.cuprodemy.entity.TipocomentarioEntity;
+import net.ausiasmarch.cuprodemy.service.TipocomentarioService;
 
 @RestController
-@RequestMapping("/leccion")
-public class LeccionController {
-
+@RequestMapping("/tipocomentario")
+public class TipocomentarioController {
+    
     @Autowired
-    LeccionService oLeccionService;
-
+    TipocomentarioService oTipocomentarioService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<LeccionEntity> get(@PathVariable(value = "id") Long id) {
-        return new ResponseEntity<LeccionEntity>(oLeccionService.get(id), HttpStatus.OK);
+    public ResponseEntity<TipocomentarioEntity> get(@PathVariable(value = "id") Long id) {
+        return new ResponseEntity<TipocomentarioEntity>(oTipocomentarioService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
     public ResponseEntity<Long> count() {
-        return new ResponseEntity<Long>(oLeccionService.count(), HttpStatus.OK);
+        return new ResponseEntity<Long>(oTipocomentarioService.count(), HttpStatus.OK);
     }
 
+
     @GetMapping("")
-    public ResponseEntity<Page<LeccionEntity>> getPage(
+    public ResponseEntity<Page<TipocomentarioEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter) {
-        return new ResponseEntity<Page<LeccionEntity>>(oLeccionService.getPage(oPageable, strFilter), HttpStatus.OK);
+        return new ResponseEntity<Page<TipocomentarioEntity>>(oTipocomentarioService.getPage(oPageable, strFilter), HttpStatus.OK);
     }
-    
+
     @PostMapping
-    public ResponseEntity<Long> create(@RequestBody LeccionEntity oNewLeccionEntity) {
-        return new ResponseEntity<Long>(oLeccionService.create(oNewLeccionEntity), HttpStatus.OK);
+    public ResponseEntity<Long> create(@RequestBody TipocomentarioEntity oNewTipocomentarioEntity) {
+        return new ResponseEntity<Long>(oTipocomentarioService.create(oNewTipocomentarioEntity), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Long> update(@RequestBody LeccionEntity oLeccionEntity) {
-        return new ResponseEntity<Long>(oLeccionService.update(oLeccionEntity), HttpStatus.OK);
+    public ResponseEntity<Long> update(@RequestBody TipocomentarioEntity oTipocomentarioEntity) {
+        return new ResponseEntity<Long>(oTipocomentarioService.update(oTipocomentarioEntity), HttpStatus.OK);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable(value = "id") Long id) {
-        return new ResponseEntity<Long>(oLeccionService.delete(id), HttpStatus.OK);
+        return new ResponseEntity<Long>(oTipocomentarioService.delete(id), HttpStatus.OK);
     }
 
 /*     @PostMapping("/generate")
-    public ResponseEntity<LeccionEntity> generate() {
-        return new ResponseEntity<LeccionEntity>(oLeccionService.generateOne(), HttpStatus.OK);
+    public ResponseEntity<TipocomentarioEntity> generate() {
+        return new ResponseEntity<TipocomentarioEntity>(oTipocomentarioService.generateOne(), HttpStatus.OK);
     } */
+
 }

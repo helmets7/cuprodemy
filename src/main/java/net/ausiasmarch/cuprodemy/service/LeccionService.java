@@ -1,5 +1,8 @@
 package net.ausiasmarch.cuprodemy.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
@@ -16,9 +19,6 @@ import net.ausiasmarch.cuprodemy.repository.LeccionRepository;
 @Service
 public class LeccionService {
     
-        private final String CUPRODEMY_DEFAULT_PASSWORD = "4298f843f830fb3cc13ecdfe1b2cf10f51f929df056d644d1bca73228c5e8f64";
-
-
     @Autowired
     LeccionRepository oLeccionRepository;
 
@@ -36,7 +36,6 @@ public class LeccionService {
     
 
     public LeccionEntity get(Long id) {
-        
         oAuthService.OnlyAdminsOrOwnUsersData(id);
         try {
             return oLeccionRepository.findById(id).get();
@@ -51,22 +50,21 @@ public class LeccionService {
     }
 
 
-    public Page<LeccionEntity> getPage(Pageable oPageable, String strFilter, String sNombre){
+     public Page<LeccionEntity> getPage(Pageable oPageable, String strFilter){
         oAuthService.OnlyAdmins();
         ValidationHelper.validateRPP(oPageable.getPageSize());
         Page<LeccionEntity> oPage = null;
-        if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+        if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty() ) {
             oPage = oLeccionRepository.findAll(oPageable);
         } else {
             oPage = oLeccionRepository.findByDescripcionIgnoreCaseContaining(strFilter, oPageable);
         }
         return oPage;
-    }
+    } 
 
     public Long create(LeccionEntity oNewLeccionEntity) {
         oAuthService.OnlyAdmins();
         oNewLeccionEntity.setId(0L);
-        oNewLeccionEntity.setPass(CUPRODEMY_DEFAULT_PASSWORD);
         return oLeccionRepository.save(oNewLeccionEntity).getId();
     }
 
@@ -77,23 +75,6 @@ public class LeccionService {
         return oLeccionRepository.save(oLeccionEntity).getId();
     }
 
-    @Transactional
-    private LeccionEntity update4Admins(LeccionEntity oUpdatedLeccionEntity) {
-        LeccionEntity oLeccionEntity = oLeccionRepository.findById(oUpdatedLeccionEntity.getId()).get();
-        oLeccionEntity.setDescripcion(oUpdatedLeccionEntity.getDescripcion());
-        oLeccionEntity.setRecurso(oUpdatedLeccionEntity.getRecurso());
-        oLeccionEntity.setOrden(oUpdatedLeccionEntity.getOrden());
-        return oLeccionRepository.save(oLeccionEntity);
-    }
-
-    @Transactional
-    private LeccionEntity update4Users(LeccionEntity oUpdatedLeccionEntity) {
-        LeccionEntity oLeccionEntity = oLeccionRepository.findById(oUpdatedLeccionEntity.getId()).get();
-        oLeccionEntity.setDescripcion(oUpdatedLeccionEntity.getDescripcion());
-        oLeccionEntity.setRecurso(oUpdatedLeccionEntity.getRecurso());
-        oLeccionEntity.setOrden(oUpdatedLeccionEntity.getOrden());
-        return oLeccionRepository.save(oLeccionEntity);
-    }
 
     public Long delete(Long id) {
         oAuthService.OnlyAdmins();
@@ -109,7 +90,7 @@ public class LeccionService {
         }
     }
 
-    public LeccionEntity generate() {
+/*     public LeccionEntity generateLeccion() {
         oAuthService.OnlyAdmins();
         LeccionEntity oLeccionEntity = new LeccionEntity();
         oLeccionEntity.setDescripcion("Leccion de prueba");
@@ -117,6 +98,23 @@ public class LeccionService {
         oLeccionEntity.setOrden("Leccion de prueba");
         return oLeccionEntity;
 
+    } */
+
+/*     public LeccionEntity generateOne() {
+        oAuthService.OnlyAdmins();
+        return oLeccionRepository.save(generateLeccion());
     }
+
+    public Long generateSome(Long amount) {
+        oAuthService.OnlyAdmins();
+        List<LeccionEntity> LeccionToSave = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            LeccionToSave.add(generateLeccion());
+        }
+        oLeccionRepository.saveAll(LeccionToSave);
+        return oLeccionRepository.count();
+    }
+
+ */
 
 }

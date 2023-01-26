@@ -29,7 +29,7 @@ public class ComentarioEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_tipocomentario")
-    private TipoComentarioEntity tipocomentario;
+    private TipocomentarioEntity tipocomentario;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_curso")
@@ -70,11 +70,11 @@ public class ComentarioEntity {
         this.usuario = usuario;
     }
 
-    public TipoComentarioEntity getTipoComentario() {
+    public TipocomentarioEntity getTipoComentario() {
         return tipocomentario;
     }
 
-    public void setTipoComentario(TipoComentarioEntity tipocomentario) {
+    public void setTipoComentario(TipocomentarioEntity tipocomentario) {
         this.tipocomentario = tipocomentario;
     }
 
