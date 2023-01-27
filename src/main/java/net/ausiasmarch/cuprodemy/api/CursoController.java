@@ -63,11 +63,7 @@ public class CursoController {
     public ResponseEntity<Long> delete(@PathVariable(value = "id") Long id) {
         return new ResponseEntity<Long>(oCursoService.delete(id), HttpStatus.OK);
     }
-
-/*     @PostMapping("/generate")
-    public ResponseEntity<CursoEntity> generate() {
-        return new ResponseEntity<CursoEntity>(oCursoService.generateOne(), HttpStatus.OK);
-    } */
+    
 
     
 

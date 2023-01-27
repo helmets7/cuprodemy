@@ -85,28 +85,6 @@ public class TipocomentarioService {
             throw new ResourceNotModifiedException("id " + id + " not exist");
         }
     }
-/* 
-    public TipocomentarioEntity generateTipocomentario() {
-        oAuthService.OnlyAdmins();
-        TipocomentarioEntity oTipocomentarioEntity = new TipocomentarioEntity();
-        oTipocomentarioEntity.setTipo("Tipocomentario de prueba");
-        return oTipocomentarioEntity;
 
-    } */
-
-/*     public TipocomentarioEntity generateOne() {
-        oAuthService.OnlyAdmins();
-        return oTipocomentarioRepository.save(generateTipocomentario());
-    }
-
-    public Long generateSome(Long amount) {
-        oAuthService.OnlyAdmins();
-        List<TipocomentarioEntity> TipocomentarioToSave = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            TipocomentarioToSave.add(generateTipocomentario());
-        }
-        oTipocomentarioRepository.saveAll(TipocomentarioToSave);
-        return oTipocomentarioRepository.count();
-    } */
 
 }

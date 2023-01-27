@@ -83,25 +83,11 @@ public class UsertypeService {
         }
     }
 
-/*     public UsertypeEntity generateUsertypeEntity() {
+    public UsertypeEntity generateUsertypeEntity() {
         UsertypeEntity oUsertypeEntity = new UsertypeEntity();
         oUsertypeEntity.setNombre("nombre");
         return oUsertypeEntity;
-    } */
+    } 
 
-/* 
-    public UsertypeEntity generateOne(){
-        oAuthService.OnlyAdmins();
-        return oUsertypeRepository.save(generateUsertypeEntity());
-    }
-
-    public Long generateSome(Long amount){
-        oAuthService.OnlyAdmins();
-        List<UsertypeEntity> UsertypeToSave = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            oUsertypeRepository.save(generateUsertypeEntity());
-        }
-        return amount;
-    } */
 
 }

@@ -36,6 +36,10 @@ public class UsertypeController {
         return new ResponseEntity<UsertypeEntity>(oTipousuarioService.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> count() {
+        return new ResponseEntity<Long>(oTipousuarioService.count(), HttpStatus.OK);
+    }
 
     @GetMapping("")
     public ResponseEntity<Page<UsertypeEntity>> getPage(
@@ -44,4 +48,22 @@ public class UsertypeController {
         return new ResponseEntity<Page<UsertypeEntity>>(oTipousuarioService.getPage(oPageable, strFilter), HttpStatus.OK);
     }
   
+    @PostMapping
+    public ResponseEntity<Long> create(@RequestBody UsertypeEntity oNewTipousuarioEntity) {
+        return new ResponseEntity<Long>(oTipousuarioService.create(oNewTipousuarioEntity), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Long> update(@RequestBody UsertypeEntity oTipousuarioEntity) {
+        return new ResponseEntity<Long>(oTipousuarioService.update(oTipousuarioEntity), HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Long> delete(@PathVariable(value = "id") Long id) {
+        return new ResponseEntity<Long>(oTipousuarioService.delete(id), HttpStatus.OK);
+    }
+
+
+
 }

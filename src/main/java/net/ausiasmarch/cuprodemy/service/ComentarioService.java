@@ -10,14 +10,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 import net.ausiasmarch.cuprodemy.entity.ComentarioEntity;
 import net.ausiasmarch.cuprodemy.exception.CannotPerformOperationException;
 import net.ausiasmarch.cuprodemy.exception.ResourceNotFoundException;
 import net.ausiasmarch.cuprodemy.exception.ResourceNotModifiedException;
 import net.ausiasmarch.cuprodemy.helper.RandomHelper;
 import net.ausiasmarch.cuprodemy.helper.TipocomentarioHelper;
-import net.ausiasmarch.cuprodemy.helper.ValidationHelper;
 import net.ausiasmarch.cuprodemy.repository.ComentarioRepository;
 import net.ausiasmarch.cuprodemy.repository.TipocomentarioRepository;
 
@@ -40,14 +38,20 @@ public class ComentarioService {
     ComentarioRepository oComentarioRepository;
 
     @Autowired
+    UserService oUsuarioService;
+
+    @Autowired
     AuthService oAuthService;
+
+    @Autowired
+    CursoService oCursoService;
 
     @Autowired
     TipocomentarioRepository oTipocomentarioRepository;
 
     public void validate(Long id) {
         if (!oComentarioRepository.existsById(id)) {
-            throw new ResourceNotFoundException("id " + id + " not exist");
+            throw new ResourceNotFoundException("id " + id + " doesn't exist");
         }
     }
 
@@ -115,16 +119,28 @@ public class ComentarioService {
         }
     }
 
+    public ComentarioEntity generate() {
+        oAuthService.OnlyAdmins();
+        return oComentarioRepository.save(generateRandomComentario());
+    } 
+
+
+    public Long generateSome(Long amount) {
+        oAuthService.OnlyAdmins();
+        List<ComentarioEntity> ComentarioList = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            ComentarioEntity oComentarioEntity = generateRandomComentario();
+            oComentarioRepository.save(oComentarioEntity);
+            ComentarioList.add(oComentarioEntity);
+        }
+
+        return oComentarioRepository.count();
+    }
+
 
     public ComentarioEntity getOneRandom() {
         if (count() > 0) {
-            ComentarioEntity oComentarioEntity = null;
-            int iPosicion = RandomHelper.getRandomInt(0, (int) oComentarioRepository.count() - 1);
-            Pageable oPageable = PageRequest.of(iPosicion, 1);
-            Page<ComentarioEntity> ComentarioPage = oComentarioRepository.findAll(oPageable);
-            List<ComentarioEntity> ComentarioList = ComentarioPage.getContent();
-            oComentarioEntity = oComentarioRepository.getById(ComentarioList.get(0).getId());
-            return oComentarioEntity;
+            return oComentarioRepository.findById((long)(Math.random() * oComentarioRepository.count() +1)).get();
         } else {
             throw new CannotPerformOperationException("ho hay comentarios en la base de datos");
         }
@@ -139,6 +155,8 @@ public class ComentarioService {
         } else {
             oComentarioEntity.setTipoComentario(oTipocomentarioRepository.getById(TipocomentarioHelper.APORTES));
         }
+        oComentarioEntity.setUsuario(oUsuarioService.getOneRandom());
+        oComentarioEntity.setCurso(oCursoService.getOneRandom());
         
         return oComentarioEntity;
     }
@@ -147,17 +165,6 @@ public class ComentarioService {
         oAuthService.OnlyAdmins();
         return oComentarioRepository.save(generateRandomComentario());
     }
-
-    public Long generateSome(Long amount) {
-        oAuthService.OnlyAdmins();
-        List<ComentarioEntity> ComentarioToSave = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            ComentarioToSave.add(generateRandomComentario());
-        }
-        oComentarioRepository.saveAll(ComentarioToSave);
-        return oComentarioRepository.count();
-    }
-
 
 
 

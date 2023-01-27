@@ -1,8 +1,6 @@
 package net.ausiasmarch.cuprodemy.service;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.ausiasmarch.cuprodemy.entity.CursoEntity;
+import net.ausiasmarch.cuprodemy.exception.CannotPerformOperationException;
 import net.ausiasmarch.cuprodemy.exception.ResourceNotFoundException;
 import net.ausiasmarch.cuprodemy.exception.ResourceNotModifiedException;
 import net.ausiasmarch.cuprodemy.helper.ValidationHelper;
@@ -59,7 +58,7 @@ public class CursoService {
             } else {
                 oPage = oCursoRepository.findByNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(id_leccion, strFilter, strFilter, oPageable);
             }
-        } else {
+        } else {   
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
                 oPage = oCursoRepository.findByLeccionId(id_leccion, oPageable);
             } else {
@@ -98,35 +97,15 @@ public class CursoService {
         }
     }
 
-/*     public CursoEntity generateCurso() {
-        oAuthService.OnlyAdmins();
-        CursoEntity oCursoEntity = new CursoEntity();
-        oCursoEntity.setNombre("Curso de prueba");
-        oCursoEntity.setDescripcion("Curso de prueba");
-        oCursoEntity.setMiniatura("Curso de prueba");
-        oCursoEntity.setVideoUrl("Curso de prueba");
-        //oCursoEntity.setDuracion();
-        return oCursoEntity;
 
-    } */
-/* 
-    public CursoEntity generateOne() {
-        oAuthService.OnlyAdmins();
-        return oCursoRepository.save(generateCurso());
-    }
 
-    public Long generateSome(Long amount) {
-        oAuthService.OnlyAdmins();
-        List<CursoEntity> CursoToSave = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            CursoToSave.add(generateCurso());
+    public CursoEntity getOneRandom() {
+        if (count() > 0) {
+            return oCursoRepository.findById((long)(Math.random() * oCursoRepository.count() +1)).get();
+        } else {
+            throw new CannotPerformOperationException("ho hay Cursos en la base de datos");
         }
-        oCursoRepository.saveAll(CursoToSave);
-        return oCursoRepository.count();
     }
- */
-
-
 
 
 

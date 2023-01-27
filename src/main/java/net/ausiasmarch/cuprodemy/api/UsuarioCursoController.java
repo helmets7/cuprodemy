@@ -1,6 +1,12 @@
 package net.ausiasmarch.cuprodemy.api;
 
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Sort;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.cuprodemy.entity.UsuarioCursoEntity;
@@ -32,8 +39,15 @@ public class UsuarioCursoController {
         return new ResponseEntity<Long>(oUsuarioCursoService.count(), HttpStatus.OK);
     }
 
-    //HOLA FALTA EL GETPAGE 
-
+    @GetMapping("")
+    public ResponseEntity<Page<UsuarioCursoEntity>>getPage(
+        @ParameterObject @PageableDefault(page =0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
+        @RequestParam(name = "filter", required = false) String strFilter,
+        @RequestParam(value = "usuario", required = false) Long id_usuario,
+        @RequestParam(value = "curso", required = false) Long id_curso){
+            return new ResponseEntity<Page<UsuarioCursoEntity>>(oUsuarioCursoService.getPage(oPageable, strFilter, id_usuario, id_curso), HttpStatus.OK);
+        }
+    
 
     @PostMapping
     public ResponseEntity<Long> create(@RequestBody UsuarioCursoEntity oNewCursoEntity) {
@@ -50,11 +64,6 @@ public class UsuarioCursoController {
     public ResponseEntity<Long> delete(@PathVariable(value = "id") Long id) {
         return new ResponseEntity<Long>(oUsuarioCursoService.delete(id), HttpStatus.OK);
     }
-
-/*     @PostMapping("/generate")
-    public ResponseEntity<UsuarioCursoEntity> generate() {
-        return new ResponseEntity<UsuarioCursoEntity>(oUsuarioCursoService.generateOne(), HttpStatus.OK);
-    } */
 
     
     

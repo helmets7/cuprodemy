@@ -25,7 +25,7 @@ public class SessionController {
     public ResponseEntity<UserEntity> login(@RequestBody UsuarioBean oUserBean) {
         return new ResponseEntity<UserEntity>(oAuthService.login(oUserBean), HttpStatus.OK);
     }
-    @DeleteMapping("")
+    @DeleteMapping("/logout")
     public ResponseEntity<?> logout() {
         oAuthService.logout();
         return new ResponseEntity<>(null, HttpStatus.OK);
