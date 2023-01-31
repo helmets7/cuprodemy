@@ -16,6 +16,7 @@ import net.ausiasmarch.cuprodemy.exception.ResourceNotFoundException;
 import net.ausiasmarch.cuprodemy.exception.ResourceNotModifiedException;
 import net.ausiasmarch.cuprodemy.helper.RandomHelper;
 import net.ausiasmarch.cuprodemy.helper.TipocomentarioHelper;
+import net.ausiasmarch.cuprodemy.helper.ValidationHelper;
 import net.ausiasmarch.cuprodemy.repository.ComentarioRepository;
 import net.ausiasmarch.cuprodemy.repository.TipocomentarioRepository;
 
@@ -71,23 +72,33 @@ public class ComentarioService {
 
      public Page<ComentarioEntity> getPage(Pageable oPageable, String strFilter, Long id_usuario, Long id_tipocomentario, Long id_curso){
         oAuthService.OnlyAdmins();
+
+        ValidationHelper.validateRPP(oPageable.getPageSize());
+        Page<ComentarioEntity> oPage = null;
+
         if (id_usuario == null && id_tipocomentario == null && id_curso == null) {
-            return oComentarioRepository.findAll(oPageable);
+            if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+                oPage = oComentarioRepository.findAll(oPageable);
+            } else {
+                oPage = oComentarioRepository.findByComentarioIgnoreCaseContaining(strFilter,oPageable);
+            }
         } else if (id_usuario == null && id_curso == null) {
-            return oComentarioRepository.findByTipocomentario(oPageable, id_tipocomentario);
+            oPage = oComentarioRepository.findByTipocomentario(oPageable, id_tipocomentario);
         } else if (id_tipocomentario == null && id_curso == null) {
-            return oComentarioRepository.findByUsuario(oPageable, id_usuario);
+            oPage = oComentarioRepository.findByUsuario(oPageable, id_usuario);
         } else if (id_tipocomentario == null && id_usuario == null) {
-            return oComentarioRepository.findByCurso(oPageable, id_curso);
+            oPage = oComentarioRepository.findByCurso(oPageable, id_curso);
         } else if (id_usuario == null) {
-            return oComentarioRepository.findByCursoAndTipocomentario(oPageable, id_curso, id_tipocomentario);
+            oPage = oComentarioRepository.findByCursoAndTipocomentario(oPageable, id_curso, id_tipocomentario);
         } else if (id_tipocomentario == null) {
-            return oComentarioRepository.findByCursoAndUsuario(oPageable, id_curso, id_usuario);
+            oPage = oComentarioRepository.findByCursoAndUsuario(oPageable, id_curso, id_usuario);
         } else if (id_curso == null) {
-            return oComentarioRepository.findByUsuarioAndTipocomentario(oPageable, id_usuario, id_tipocomentario);
+            oPage = oComentarioRepository.findByUsuarioAndTipocomentario(oPageable, id_usuario, id_tipocomentario);
         } else {
-            return oComentarioRepository.findByCursoAndUsuarioAndTipocomentario(oPageable, id_curso, id_usuario, id_tipocomentario);
+            oPage = oComentarioRepository.findByCursoAndUsuarioAndTipocomentario(oPageable, id_curso, id_usuario, id_tipocomentario);
         }
+
+        return  oPage ;
     }  
 
     public Long create(ComentarioEntity oNewComentarioEntity) {

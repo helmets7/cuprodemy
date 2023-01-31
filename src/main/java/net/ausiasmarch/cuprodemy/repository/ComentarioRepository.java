@@ -24,4 +24,7 @@ public interface ComentarioRepository extends JpaRepository<ComentarioEntity, Lo
 
     Page<ComentarioEntity> findByCursoAndUsuarioAndTipocomentario(Pageable oPageable, Long id_curso, Long id_usuario, Long id_tipocomentario);
 
+    Page<ComentarioEntity> findByComentarioIgnoreCaseContaining(String comentario, Pageable oPageable);
+   
+ 
 }

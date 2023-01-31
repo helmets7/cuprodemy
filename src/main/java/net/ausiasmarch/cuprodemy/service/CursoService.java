@@ -56,7 +56,7 @@ public class CursoService {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
                 oPage = oCursoRepository.findAll(oPageable);
             } else {
-                oPage = oCursoRepository.findByNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(id_leccion, strFilter, strFilter, oPageable);
+                oPage = oCursoRepository.findByNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining( strFilter, strFilter, oPageable);
             }
         } else {   
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
