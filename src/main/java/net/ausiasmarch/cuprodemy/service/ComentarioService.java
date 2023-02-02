@@ -57,7 +57,7 @@ public class ComentarioService {
     }
 
     public ComentarioEntity get(Long id) {
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+        oAuthService.OnlyAdmins();
         try {
             return oComentarioRepository.findById(id).get();
         } catch (Exception ex) {

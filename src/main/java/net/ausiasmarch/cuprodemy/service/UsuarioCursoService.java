@@ -29,7 +29,7 @@ public class UsuarioCursoService {
     }
 
     public UsuarioCursoEntity get(Long id) {
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+        oAuthService.OnlyAdmins();
         try {
             return oUsuarioCursoRepository.findById(id).get();
         } catch (Exception ex) {

@@ -35,7 +35,7 @@ public class CursoService {
     }
 
     public CursoEntity get(Long id) {
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+        oAuthService.OnlyAdmins();
         try {
             return oCursoRepository.findById(id).get();
         } catch (Exception ex) {
@@ -80,6 +80,7 @@ public class CursoService {
     public Long update(CursoEntity oCursoEntity) {
         validate(oCursoEntity.getId());
         oAuthService.OnlyAdminsOrOwnUsersData(oCursoEntity.getId());
+    
         return oCursoRepository.save(oCursoEntity).getId();
     }
 

@@ -36,7 +36,7 @@ public class LeccionService {
     
 
     public LeccionEntity get(Long id) {
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+        oAuthService.OnlyAdmins();
         try {
             return oLeccionRepository.findById(id).get();
         } catch (Exception ex) {

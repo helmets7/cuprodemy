@@ -60,7 +60,7 @@ public class UserService {
 
     public UserEntity get(Long id) {
         
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+        oAuthService.OnlyAdmins();
         try {
             return oUserRepository.findById(id).get();
         } catch (Exception ex) {
@@ -133,7 +133,7 @@ public class UserService {
         oUserEntity.setApellido2(oUpdatedUserEntity.getApellido2());
         oUserEntity.setEmail(oUpdatedUserEntity.getEmail());
         oUserEntity.setNickname(oUpdatedUserEntity.getNickname());
-        oUserEntity.setTipousuario(oTipouserService.get(2L));
+        oUserEntity.setTipousuario(oTipouserService.get(oUpdatedUserEntity.getTipousuario().getId()));      
         return oUserRepository.save(oUserEntity);
     }
 

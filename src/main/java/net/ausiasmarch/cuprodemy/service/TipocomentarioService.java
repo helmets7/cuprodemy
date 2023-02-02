@@ -32,7 +32,7 @@ public class TipocomentarioService {
     }
 
     public TipocomentarioEntity get(Long id) {
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+        oAuthService.OnlyAdmins();
         try {
             return oTipocomentarioRepository.findById(id).get();
         } catch (Exception ex) {
