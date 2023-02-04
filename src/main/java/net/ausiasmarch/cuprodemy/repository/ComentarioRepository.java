@@ -10,21 +10,26 @@ import net.ausiasmarch.cuprodemy.entity.ComentarioEntity;
 @Repository
 public interface ComentarioRepository extends JpaRepository<ComentarioEntity, Long>{
 
-    Page<ComentarioEntity> findByTipocomentario(Pageable oPageable, Long id_tipocomentario);
+    Page<ComentarioEntity> findByTipocomentarioId(Pageable oPageable, Long id_tipocomentario);
 
-    Page<ComentarioEntity> findByUsuario(Pageable oPageable, Long id_usuario);
+    Page<ComentarioEntity> findByUsuarioId(Pageable oPageable, Long id_usuario);
 
-    Page<ComentarioEntity> findByCurso(Pageable oPageable, Long id_curso);
+    Page<ComentarioEntity> findByCursoId(Pageable oPageable, Long id_curso);
+
+    Page<ComentarioEntity> findByCursoIdAndTipocomentarioId(Pageable oPageable, Long id_curso, Long id_tipocomentario);
+
+    Page<ComentarioEntity> findByCursoIdAndUsuarioId(Pageable oPageable, Long id_curso, Long id_usuario);
+
+    Page<ComentarioEntity> findByUsuarioIdAndTipocomentarioId(Pageable oPageable, Long id_usuario, Long id_tipocomentario);
+
+    Page<ComentarioEntity> findByCursoIdAndUsuarioIdAndTipocomentarioId(Pageable oPageable, Long id_curso, Long id_usuario, Long id_tipocomentario);
+
+    Page<ComentarioEntity> findByComentarioIgnoreCaseContaining(String comentario, Pageable oPageable);
 
     Page<ComentarioEntity> findByCursoAndTipocomentario(Pageable oPageable, Long id_curso, Long id_tipocomentario);
 
-    Page<ComentarioEntity> findByCursoAndUsuario(Pageable oPageable, Long id_curso, Long id_usuario);
-
-    Page<ComentarioEntity> findByUsuarioAndTipocomentario(Pageable oPageable, Long id_usuario, Long id_tipocomentario);
-
-    Page<ComentarioEntity> findByCursoAndUsuarioAndTipocomentario(Pageable oPageable, Long id_curso, Long id_usuario, Long id_tipocomentario);
-
-    Page<ComentarioEntity> findByComentarioIgnoreCaseContaining(String comentario, Pageable oPageable);
+    Page<ComentarioEntity> findByCursoAndUsuarioAndTipocomentario(Pageable oPageable, Long id_curso, Long id_usuario,
+            Long id_tipocomentario);
    
  
 }

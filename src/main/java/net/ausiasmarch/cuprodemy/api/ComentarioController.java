@@ -42,10 +42,10 @@ public class ComentarioController {
     public ResponseEntity<Page<ComentarioEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter,
-            @RequestParam(value = "usuario", required = false) Long id_usuario,
             @RequestParam(value = "tipocomentario", required = false) Long id_tipocomentario,
+            @RequestParam(value = "usuario", required = false) Long id_usuario,
             @RequestParam(value = "curso", required = false) Long id_curso) {
-        return new ResponseEntity<Page<ComentarioEntity>>(oComentarioService.getPage(oPageable, strFilter, id_usuario, id_tipocomentario, id_curso), HttpStatus.OK);
+        return new ResponseEntity<Page<ComentarioEntity>>(oComentarioService.getPage(oPageable, strFilter, id_tipocomentario, id_usuario, id_curso), HttpStatus.OK);
     }  
 
     @PostMapping

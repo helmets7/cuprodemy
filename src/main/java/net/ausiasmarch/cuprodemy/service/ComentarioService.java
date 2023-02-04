@@ -70,7 +70,7 @@ public class ComentarioService {
         return oComentarioRepository.count();
     }
 
-     public Page<ComentarioEntity> getPage(Pageable oPageable, String strFilter, Long id_usuario, Long id_tipocomentario, Long id_curso){
+     public Page<ComentarioEntity> getPage(Pageable oPageable, String strFilter, Long id_tipocomentario, Long id_usuario, Long id_curso){
         oAuthService.OnlyAdmins();
 
         ValidationHelper.validateRPP(oPageable.getPageSize());
@@ -83,17 +83,17 @@ public class ComentarioService {
                 oPage = oComentarioRepository.findByComentarioIgnoreCaseContaining(strFilter,oPageable);
             }
         } else if (id_usuario == null && id_curso == null) {
-            oPage = oComentarioRepository.findByTipocomentario(oPageable, id_tipocomentario);
+            oPage = oComentarioRepository.findByTipocomentarioId(oPageable, id_tipocomentario);
         } else if (id_tipocomentario == null && id_curso == null) {
-            oPage = oComentarioRepository.findByUsuario(oPageable, id_usuario);
+            oPage = oComentarioRepository.findByUsuarioId(oPageable, id_usuario);
         } else if (id_tipocomentario == null && id_usuario == null) {
-            oPage = oComentarioRepository.findByCurso(oPageable, id_curso);
+            oPage = oComentarioRepository.findByCursoId(oPageable, id_curso);
         } else if (id_usuario == null) {
             oPage = oComentarioRepository.findByCursoAndTipocomentario(oPageable, id_curso, id_tipocomentario);
         } else if (id_tipocomentario == null) {
-            oPage = oComentarioRepository.findByCursoAndUsuario(oPageable, id_curso, id_usuario);
+            oPage = oComentarioRepository.findByCursoAndTipocomentario(oPageable, id_curso, id_usuario);
         } else if (id_curso == null) {
-            oPage = oComentarioRepository.findByUsuarioAndTipocomentario(oPageable, id_usuario, id_tipocomentario);
+            oPage = oComentarioRepository.findByCursoAndTipocomentario(oPageable, id_usuario, id_tipocomentario);
         } else {
             oPage = oComentarioRepository.findByCursoAndUsuarioAndTipocomentario(oPageable, id_curso, id_usuario, id_tipocomentario);
         }
