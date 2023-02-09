@@ -66,14 +66,15 @@ public class AuthService {
         }
     }
 
-    public Long getUserID() {
-        UserEntity oUserSessionEntity = (UserEntity) oHttpSession.getAttribute("usuario");
+    public Long getID() {
+        UserEntity oUserSessionEntity = oUserRepository.findByNickname((String) oRequest.getAttribute("usuario"));
         if (oUserSessionEntity != null) {
             return oUserSessionEntity.getId();
         } else {
             throw new UnauthorizedException("this request is only allowed to auth users");
         }
     }
+
 
     public boolean isAdmin() {
         UserEntity oUserSessionEntity = (UserEntity) oHttpSession.getAttribute("usuario");
@@ -127,18 +128,19 @@ public class AuthService {
     }
 
     public void OnlyAdminsOrOwnUsersData(Long id) {
-        UserEntity oUserSessionEntity = oUserRepository.findByNickname((String) oRequest.getAttribute("usuario"));
-        if (oUserSessionEntity == null) {
+        UserEntity oUsuarioSessionEntity = oUserRepository.findByNickname((String) oRequest.getAttribute("usuario"));
+        if (oUsuarioSessionEntity == null) {
             throw new UnauthorizedException("no session active");
         } else {
-            if (oUserSessionEntity.getTipousuario().getId().equals(TipoUsuarioHelper.ADMIN)) {
-
-            }else if (!oUserSessionEntity.getId().equals(id)) {
-                    throw new UnauthorizedException("this request is only allowed for your own data");
-                }
+            if (oUsuarioSessionEntity.getTipousuario().getId().equals(TipoUsuarioHelper.ADMIN)) {
+                
+            }else if (!oUsuarioSessionEntity.getId().equals(id)) {
+                throw new UnauthorizedException("this request is only allowed for your own data");
             }
+        }
     }
-    
+
+
     
 
 }

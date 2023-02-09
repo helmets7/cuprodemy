@@ -11,6 +11,9 @@ import net.ausiasmarch.cuprodemy.entity.LeccionEntity;
 public interface LeccionRepository extends JpaRepository<LeccionEntity, Long> {
 
     Page<LeccionEntity> findByDescripcionIgnoreCaseContaining(String strFilter, Pageable oPageable);
-    
+
+    Page<LeccionEntity> findByCursoId(Long id_curso, Pageable oPageable);
+
+    Page<LeccionEntity> findByCursoIdOrDescripcionIgnoreCaseContaining(Long id_curso, String strFilter, Pageable oPageable);
     
 }

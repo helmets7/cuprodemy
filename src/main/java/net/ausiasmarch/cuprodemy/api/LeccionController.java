@@ -42,8 +42,9 @@ public class LeccionController {
     @GetMapping("")
     public ResponseEntity<Page<LeccionEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
-            @RequestParam(name = "filter", required = false) String strFilter) {
-        return new ResponseEntity<Page<LeccionEntity>>(oLeccionService.getPage(oPageable, strFilter), HttpStatus.OK);
+            @RequestParam(name = "filter", required = false) String strFilter,
+            @RequestParam(name = "curso", required = false) Long id_curso) {
+        return new ResponseEntity<Page<LeccionEntity>>(oLeccionService.getPage(oPageable, strFilter, id_curso), HttpStatus.OK);
     }
     
     @PostMapping

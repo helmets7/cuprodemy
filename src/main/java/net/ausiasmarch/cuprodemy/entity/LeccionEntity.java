@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,13 +29,10 @@ public class LeccionEntity {
     private String recurso;
     private String orden;
 
-    
-    @OneToMany(mappedBy = "leccion", fetch = FetchType.LAZY)
-    private List<CursoEntity> cursos;
 
-    public LeccionEntity() {
-        this.cursos = new ArrayList<>();
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_curso")
+    private CursoEntity curso;
 
 
     public Long getId() {
@@ -69,8 +68,12 @@ public class LeccionEntity {
     }
 
 
-    public int getCursos() {
-        return cursos.size();
+    public CursoEntity getCurso() {
+        return curso;
+    }
+
+    public void setCurso(CursoEntity curso) {
+        this.curso = curso;
     }
 
 

@@ -60,7 +60,7 @@ public class UserService {
 
     public UserEntity get(Long id) {
         
-        oAuthService.OnlyAdmins();
+        oAuthService.OnlyAdminsOrOwnUsersData(id);
         try {
             return oUserRepository.findById(id).get();
         } catch (Exception ex) {

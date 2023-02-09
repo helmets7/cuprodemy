@@ -50,17 +50,27 @@ public class LeccionService {
     }
 
 
-     public Page<LeccionEntity> getPage(Pageable oPageable, String strFilter){
-        oAuthService.OnlyAdmins();
+    
+
+    public Page<LeccionEntity> getPage(Pageable oPageable, String strFilter, Long id_curso) {
+        //oAuthService.OnlyAdmins();
         ValidationHelper.validateRPP(oPageable.getPageSize());
         Page<LeccionEntity> oPage = null;
-        if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty() ) {
-            oPage = oLeccionRepository.findAll(oPageable);
-        } else {
-            oPage = oLeccionRepository.findByDescripcionIgnoreCaseContaining(strFilter, oPageable);
+        if (id_curso == null) {
+            if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+                oPage = oLeccionRepository.findAll(oPageable);
+            } else {
+                oPage = oLeccionRepository.findByDescripcionIgnoreCaseContaining( strFilter, oPageable);
+            }
+        } else {   
+            if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
+                oPage = oLeccionRepository.findByCursoId(id_curso, oPageable);
+            } else {
+                oPage = oLeccionRepository.findByCursoIdOrDescripcionIgnoreCaseContaining(id_curso, strFilter, oPageable);
+            }
         }
         return oPage;
-    } 
+    }
 
     public Long create(LeccionEntity oNewLeccionEntity) {
         oAuthService.OnlyAdmins();

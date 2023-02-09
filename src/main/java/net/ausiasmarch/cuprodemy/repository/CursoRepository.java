@@ -15,11 +15,4 @@ public interface CursoRepository extends JpaRepository<CursoEntity, Long>{
 
     Page<CursoEntity> findByNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(
             String nombre, String descripcion, Pageable oPageable);
-
-    Page<CursoEntity> findByLeccionId(Long id_leccion, Pageable oPageable);
-
-
-
-Page<CursoEntity> findByLeccionIdOrNombreIgnoreCaseContainingOrDescripcionIgnoreCaseContaining(Long id_leccion,
-                String nombre, String descripcion, Pageable oPageable);
 }

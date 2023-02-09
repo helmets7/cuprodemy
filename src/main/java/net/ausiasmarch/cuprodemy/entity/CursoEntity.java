@@ -33,9 +33,9 @@ public class CursoEntity {
     private String videoUrl;
     private Time duracion;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_leccion")
-    private LeccionEntity leccion;
+
+    @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
+    private final List<LeccionEntity> lecciones;
 
     @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
     private final List<ComentarioEntity> comentarios;
@@ -47,11 +47,13 @@ public class CursoEntity {
     public CursoEntity() {
         this.usuariocursos = new ArrayList<>();
         this.comentarios = new ArrayList<>();
+        this.lecciones = new ArrayList<>();
     }
 
     public CursoEntity(Long id) {
         this.usuariocursos = new ArrayList<>();
         this.comentarios = new ArrayList<>();
+        this.lecciones = new ArrayList<>();
         this.id = id;
     }
 
@@ -103,12 +105,8 @@ public class CursoEntity {
         this.duracion = time;
     }
 
-    public LeccionEntity getLeccion() {
-        return leccion;
-    }
-
-    public void setLeccion(LeccionEntity leccion) {
-        this.leccion = leccion;
+    public int getLecciones() {
+        return lecciones.size();
     }
 
     public int getComentarios() {

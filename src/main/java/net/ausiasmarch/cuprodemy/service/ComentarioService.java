@@ -97,7 +97,7 @@ public class ComentarioService {
         } else {
             oPage = oComentarioRepository.findByCursoAndUsuarioAndTipocomentario(oPageable, id_curso, id_usuario, id_tipocomentario);
         }
-
+        
         return  oPage ;
     }  
 
