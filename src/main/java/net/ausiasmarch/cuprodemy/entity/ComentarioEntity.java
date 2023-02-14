@@ -70,11 +70,11 @@ public class ComentarioEntity {
         this.usuario = usuario;
     }
 
-    public TipocomentarioEntity getTipoComentario() {
+    public TipocomentarioEntity getTipocomentario() {
         return tipocomentario;
     }
 
-    public void setTipoComentario(TipocomentarioEntity tipocomentario) {
+    public void setTipocomentario(TipocomentarioEntity tipocomentario) {
         this.tipocomentario = tipocomentario;
     }
 

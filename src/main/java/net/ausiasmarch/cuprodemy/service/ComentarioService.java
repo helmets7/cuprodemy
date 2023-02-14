@@ -71,7 +71,7 @@ public class ComentarioService {
     }
 
      public Page<ComentarioEntity> getPage(Pageable oPageable, String strFilter, Long id_tipocomentario, Long id_usuario, Long id_curso){
-        oAuthService.OnlyAdmins();
+        //oAuthService.OnlyAdmins();
 
         ValidationHelper.validateRPP(oPageable.getPageSize());
         Page<ComentarioEntity> oPage = null;
@@ -79,6 +79,7 @@ public class ComentarioService {
         if (id_usuario == null && id_tipocomentario == null && id_curso == null) {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
                 oPage = oComentarioRepository.findAll(oPageable);
+                System.out.println(strFilter);
             } else {
                 oPage = oComentarioRepository.findByComentarioIgnoreCaseContaining(strFilter,oPageable);
             }
@@ -101,9 +102,13 @@ public class ComentarioService {
         return  oPage ;
     }  
 
+    
+
+
     public Long create(ComentarioEntity oNewComentarioEntity) {
         oAuthService.OnlyAdmins();
         oNewComentarioEntity.setId(0L);
+        /* oNewComentarioEntity.setTipoComentario(oTipocomentarioRepository.findById(1L).get()); */
         return oComentarioRepository.save(oNewComentarioEntity).getId();
     }
 
@@ -162,9 +167,9 @@ public class ComentarioService {
         oComentarioEntity.setComentario(comentarios.get(RandomHelper.getRandomInt(0, comentarios.size() - 1)));
         oComentarioEntity.setFirmatiempo(fechayhora.get(RandomHelper.getRandomInt(0, fechayhora.size() - 1)));
         if(RandomHelper.getRandomInt(0, 10) > 1){
-            oComentarioEntity.setTipoComentario(oTipocomentarioRepository.getById(TipocomentarioHelper.PREGUNTAS));
+            oComentarioEntity.setTipocomentario(oTipocomentarioRepository.getById(TipocomentarioHelper.PREGUNTAS));
         } else {
-            oComentarioEntity.setTipoComentario(oTipocomentarioRepository.getById(TipocomentarioHelper.APORTES));
+            oComentarioEntity.setTipocomentario(oTipocomentarioRepository.getById(TipocomentarioHelper.APORTES));
         }
         oComentarioEntity.setUsuario(oUsuarioService.getOneRandom());
         oComentarioEntity.setCurso(oCursoService.getOneRandom());

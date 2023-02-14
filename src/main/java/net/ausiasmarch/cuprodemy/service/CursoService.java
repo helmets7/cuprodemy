@@ -35,7 +35,7 @@ public class CursoService {
     }
 
     public CursoEntity get(Long id) {
-        oAuthService.OnlyAdmins();
+       // oAuthService.OnlyAdminsOrOwnUsersData(get(id).getUsuario().getId());
         try {
             return oCursoRepository.findById(id).get();
         } catch (Exception ex) {
