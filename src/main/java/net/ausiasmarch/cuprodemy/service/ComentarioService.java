@@ -76,7 +76,7 @@ public class ComentarioService {
         ValidationHelper.validateRPP(oPageable.getPageSize());
         Page<ComentarioEntity> oPage = null;
 
-        if (id_usuario == null && id_tipocomentario == null && id_curso == null) {
+        if (id_usuario ==  null && id_tipocomentario == null && id_curso == null) {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
                 oPage = oComentarioRepository.findAll(oPageable);
                 System.out.println(strFilter);
