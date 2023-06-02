@@ -23,6 +23,7 @@ public class SessionController {
     public ResponseEntity<String> login(@org.springframework.web.bind.annotation.RequestBody UsuarioBean oUsuarioBean) {
         return new ResponseEntity<String>("\"" + oAuthService.login(oUsuarioBean) + "\"", HttpStatus.OK);
     }
+
     @GetMapping("")
     public ResponseEntity<UserEntity> check() {
         return new ResponseEntity<UserEntity>(oAuthService.check(), HttpStatus.OK);
