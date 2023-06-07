@@ -5,8 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import net.ausiasmarch.cuprodemy.bean.UsuarioBean;
+import net.ausiasmarch.cuprodemy.entity.TokenResponse;
 import net.ausiasmarch.cuprodemy.entity.UserEntity;
 import net.ausiasmarch.cuprodemy.helper.JwtHelper;
 import net.ausiasmarch.cuprodemy.exception.UnauthorizedException;
@@ -27,16 +31,37 @@ public class AuthService {
 
     public String login(@RequestBody UsuarioBean oUserBean) {
         if (oUserBean.getPass() != null) {
-            UserEntity oUserEntity = oUserRepository.findByNicknameAndPass(oUserBean.getNickname(), oUserBean.getPass());
+            UserEntity oUserEntity = oUserRepository.findByNicknameAndPass(oUserBean.getNickname(),
+                    oUserBean.getPass());
             if (oUserEntity != null) {
                 return JwtHelper.generateJWT(oUserBean.getNickname(), oUserEntity.getTipousuario().getId());
             } else {
-                throw new UnauthorizedException("usuario or contraseña incorrect");            }
+                throw new UnauthorizedException("usuario or contraseña incorrect");
+            }
         } else {
             throw new UnauthorizedException("wrong Contraseña");
         }
     }
 
+    public String logout(@RequestBody String token) {
+
+        if (token != null) {
+            TokenResponse resp = new TokenResponse();
+            resp.setMessage("Se ha cerrado la  sesion");
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = "";
+            try {
+                json = objectMapper.writeValueAsString(resp);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            return json;
+        } else {
+            throw new UnauthorizedException("Algo salio mal");
+        }
+
+    }
 
     public UserEntity check() {
         String strUsuarioName = (String) oRequest.getAttribute("usuario");
@@ -74,7 +99,6 @@ public class AuthService {
             throw new UnauthorizedException("this request is only allowed to auth users");
         }
     }
-
 
     public boolean isAdmin() {
         UserEntity oUserSessionEntity = (UserEntity) oHttpSession.getAttribute("usuario");
@@ -133,14 +157,11 @@ public class AuthService {
             throw new UnauthorizedException("no session active");
         } else {
             if (oUsuarioSessionEntity.getTipousuario().getId().equals(TipoUsuarioHelper.ADMIN)) {
-                
-            }else if (!oUsuarioSessionEntity.getId().equals(id)) {
+
+            } else if (!oUsuarioSessionEntity.getId().equals(id)) {
                 throw new UnauthorizedException("this request is only allowed for your own data");
             }
         }
     }
-
-
-    
 
 }

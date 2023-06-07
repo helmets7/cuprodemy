@@ -33,5 +33,10 @@ public class SessionController {
         return new ResponseEntity<Long>(oAuthService.getID(), HttpStatus.OK);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@org.springframework.web.bind.annotation.RequestBody String token) {
+        return new ResponseEntity<String>("\"" + oAuthService.logout(token) + "\"", HttpStatus.OK);
+    }
+
 
 }

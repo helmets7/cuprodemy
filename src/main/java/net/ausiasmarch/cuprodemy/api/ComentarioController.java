@@ -51,7 +51,7 @@ public class ComentarioController {
     @PostMapping
     public ResponseEntity<Long> create(@RequestBody ComentarioEntity oNewComentarioEntity) {
         return new ResponseEntity<Long>(oComentarioService.create(oNewComentarioEntity), HttpStatus.OK);
-    }
+    } 
 
     @PostMapping({"/generate/amount"})
     public ResponseEntity<Long> generate(@PathVariable(value="cantidad") Long cantidad){
