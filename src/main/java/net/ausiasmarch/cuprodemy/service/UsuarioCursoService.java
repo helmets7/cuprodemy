@@ -29,7 +29,6 @@ public class UsuarioCursoService {
     }
 
     public UsuarioCursoEntity get(Long id) {
-        oAuthService.OnlyAdmins();
         try {
             return oUsuarioCursoRepository.findById(id).get();
         } catch (Exception ex) {
@@ -38,13 +37,11 @@ public class UsuarioCursoService {
     }
 
     public Long count() {
-        oAuthService.OnlyAdmins();
         return oUsuarioCursoRepository.count();
     }
 
 
     public Page<UsuarioCursoEntity> getPage(Pageable oPageable, String strFilter, Long id_usuario, Long id_curso) {
-        oAuthService.OnlyAdmins();
         ValidationHelper.validateRPP(oPageable.getPageSize());
 
         if (id_curso == null && id_usuario == null) {
@@ -66,12 +63,11 @@ public class UsuarioCursoService {
     @Transactional
     public Long update(UsuarioCursoEntity oUsuarioCursoEntity) {
         validate(oUsuarioCursoEntity.getId());
-        oAuthService.OnlyAdminsOrOwnUsersData(oUsuarioCursoEntity.getId());
+        //oAuthService.OnlyAdminsOrOwnUsersData(oUsuarioCursoEntity.getId());
         return oUsuarioCursoRepository.save(oUsuarioCursoEntity).getId();
     }
 
     public Long delete(Long id) {
-        oAuthService.OnlyAdmins();
         if (oUsuarioCursoRepository.existsById(id)) {
             oUsuarioCursoRepository.deleteById(id);
             if (oUsuarioCursoRepository.existsById(id)) {
