@@ -57,7 +57,7 @@ public class ComentarioService {
     }
 
     public ComentarioEntity get(Long id) {
-        oAuthService.OnlyAdmins();
+        
         try {
             return oComentarioRepository.findById(id).get();
         } catch (Exception ex) {
@@ -66,12 +66,11 @@ public class ComentarioService {
     }
 
     public Long count() {
-        oAuthService.OnlyAdmins();
+        
         return oComentarioRepository.count();
     }
 
      public Page<ComentarioEntity> getPage(Pageable oPageable, String strFilter, Long id_tipocomentario, Long id_usuario, Long id_curso){
-        //oAuthService.OnlyAdmins();
 
         ValidationHelper.validateRPP(oPageable.getPageSize());
         Page<ComentarioEntity> oPage = null;
@@ -106,7 +105,6 @@ public class ComentarioService {
 
 
     public Long create(ComentarioEntity oNewComentarioEntity) {
-        oAuthService.OnlyAdmins();
         oNewComentarioEntity.setId(0L);
         /* oNewComentarioEntity.setTipoComentario(oTipocomentarioRepository.findById(1L).get()); */
         return oComentarioRepository.save(oNewComentarioEntity).getId();
@@ -116,13 +114,12 @@ public class ComentarioService {
     @Transactional
     public Long update(ComentarioEntity oComentarioEntity) {
         validate(oComentarioEntity.getId());
-        oAuthService.OnlyAdminsOrOwnUsersData(oComentarioEntity.getId());
+        //oAuthService.OnlyAdminsOrOwnUsersData(oComentarioEntity.getId());
         return oComentarioRepository.save(oComentarioEntity).getId();
     }
 
 
     public Long delete(Long id) {
-        oAuthService.OnlyAdmins();
         if (oComentarioRepository.existsById(id)) {
             oComentarioRepository.deleteById(id);
             if (oComentarioRepository.existsById(id)) {
@@ -136,13 +133,11 @@ public class ComentarioService {
     }
 
     public ComentarioEntity generate() {
-        oAuthService.OnlyAdmins();
         return oComentarioRepository.save(generateRandomComentario());
     } 
 
 
     public Long generateSome(Long amount) {
-        oAuthService.OnlyAdmins();
         List<ComentarioEntity> ComentarioList = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             ComentarioEntity oComentarioEntity = generateRandomComentario();
@@ -178,7 +173,6 @@ public class ComentarioService {
     }
 
     public ComentarioEntity generateOne() {
-        oAuthService.OnlyAdmins();
         return oComentarioRepository.save(generateRandomComentario());
     }
 
