@@ -59,7 +59,6 @@ public class UsuarioCursoService {
     }
 
     public Long create(UsuarioCursoEntity oNewUsuarioCursoEntity) {
-        oAuthService.OnlyAdmins();
         oNewUsuarioCursoEntity.setId(0L);
         return oUsuarioCursoRepository.save(oNewUsuarioCursoEntity).getId();
     }

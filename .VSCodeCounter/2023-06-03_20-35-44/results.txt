@@ -1,0 +1,96 @@
+Date : 2023-06-03 20:35:44
+Directory : c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src
+Total : 51 files,  2320 codes, 65 comments, 786 blanks, all 3171 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Java            |         50 |      2,303 |         61 |        780 |      3,144 |
+| Java Properties |          1 |         17 |          4 |          6 |         27 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                  | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                     |         51 |      2,320 |         65 |        786 |      3,171 |
+| main                                                                                                                                  |         50 |      2,311 |         65 |        781 |      3,157 |
+| main\java                                                                                                                             |         49 |      2,294 |         61 |        775 |      3,130 |
+| main\java\net                                                                                                                         |         49 |      2,294 |         61 |        775 |      3,130 |
+| main\java\net\ausiasmarch                                                                                                             |         49 |      2,294 |         61 |        775 |      3,130 |
+| main\java\net\ausiasmarch\cuprodemy                                                                                                   |         49 |      2,294 |         61 |        775 |      3,130 |
+| main\java\net\ausiasmarch\cuprodemy (Files)                                                                                           |          1 |          9 |          0 |          5 |         14 |
+| main\java\net\ausiasmarch\cuprodemy\api                                                                                               |          8 |        416 |          8 |        122 |        546 |
+| main\java\net\ausiasmarch\cuprodemy\bean                                                                                              |          4 |        107 |          0 |         45 |        152 |
+| main\java\net\ausiasmarch\cuprodemy\entity                                                                                            |          7 |        462 |          0 |        193 |        655 |
+| main\java\net\ausiasmarch\cuprodemy\exception                                                                                         |          7 |         77 |          0 |         44 |        121 |
+| main\java\net\ausiasmarch\cuprodemy\filter                                                                                            |          2 |         90 |          1 |         26 |        117 |
+| main\java\net\ausiasmarch\cuprodemy\helper                                                                                            |          5 |        213 |          0 |         58 |        271 |
+| main\java\net\ausiasmarch\cuprodemy\repository                                                                                        |          7 |         91 |          0 |         69 |        160 |
+| main\java\net\ausiasmarch\cuprodemy\service                                                                                           |          8 |        829 |         52 |        213 |      1,094 |
+| main\resources                                                                                                                        |          1 |         17 |          4 |          6 |         27 |
+| test                                                                                                                                  |          1 |          9 |          0 |          5 |         14 |
+| test\java                                                                                                                             |          1 |          9 |          0 |          5 |         14 |
+| test\java\net                                                                                                                         |          1 |          9 |          0 |          5 |         14 |
+| test\java\net\ausiasmarch                                                                                                             |          1 |          9 |          0 |          5 |         14 |
+| test\java\net\ausiasmarch\cuprodemy                                                                                                   |          1 |          9 |          0 |          5 |         14 |
++---------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                                              | language        | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\CuprodemyApplication.java                      | Java            |          9 |          0 |          5 |         14 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\ComentarioController.java                  | Java            |         63 |          0 |         15 |         78 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\CursoController.java                       | Java            |         52 |          0 |         18 |         70 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\LeccionController.java                     | Java            |         53 |          4 |         13 |         70 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\SessionController.java                     | Java            |         29 |          0 |         10 |         39 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\TipocomentarioController.java              | Java            |         52 |          4 |         15 |         71 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\UserController.java                        | Java            |         61 |          0 |         16 |         77 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\UsertypeController.java                    | Java            |         52 |          0 |         18 |         70 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\api\UsuarioCursoController.java                | Java            |         54 |          0 |         17 |         71 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\bean\CaptchaBean.java                          | Java            |         31 |          0 |         13 |         44 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\bean\CaptchaResponse.java                      | Java            |         17 |          0 |          9 |         26 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\bean\ErrorResponseBean.java                    | Java            |         38 |          0 |         13 |         51 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\bean\UsuarioBean.java                          | Java            |         21 |          0 |         10 |         31 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\ComentarioEntity.java                   | Java            |         67 |          0 |         25 |         92 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\CursoEntity.java                        | Java            |         93 |          0 |         41 |        134 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\LeccionEntity.java                      | Java            |         59 |          0 |         26 |         85 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\TipocomentarioEntity.java               | Java            |         48 |          0 |         19 |         67 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\UserEntity.java                         | Java            |        106 |          0 |         41 |        147 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\UsertypeEntity.java                     | Java            |         47 |          0 |         19 |         66 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\entity\UsuarioCursoEntity.java                 | Java            |         42 |          0 |         22 |         64 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\AppExceptionHandler.java             | Java            |         41 |          0 |         13 |         54 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\CannotPerformOperationException.java | Java            |          6 |          0 |          5 |         11 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\JWTException.java                    | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\ResourceNotFoundException.java       | Java            |          6 |          0 |          6 |         12 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\ResourceNotModifiedException.java    | Java            |          6 |          0 |          5 |         11 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\UnauthorizedException.java           | Java            |          6 |          0 |          6 |         12 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\exception\ValidationException.java             | Java            |          6 |          0 |          6 |         12 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\filter\CORSFilter.java                         | Java            |         47 |          1 |         15 |         63 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\filter\JWTFilter.java                          | Java            |         43 |          0 |         11 |         54 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\helper\JwtHelper.java                          | Java            |         43 |          0 |         13 |         56 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\helper\RandomHelper.java                       | Java            |         72 |          0 |         20 |         92 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\helper\TipoUsuarioHelper.java                  | Java            |          5 |          0 |          5 |         10 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\helper\TipocomentarioHelper.java               | Java            |          5 |          0 |          5 |         10 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\helper\ValidationHelper.java                   | Java            |         88 |          0 |         15 |        103 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\ComentarioRepository.java           | Java            |         20 |          0 |         16 |         36 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\CursoRepository.java                | Java            |         11 |          0 |          8 |         19 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\LeccionRepository.java              | Java            |         12 |          0 |          8 |         20 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\TipocomentarioRepository.java       | Java            |         10 |          0 |          7 |         17 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\UserRepository.java                 | Java            |         16 |          0 |         15 |         31 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\UsertypeRepository.java             | Java            |         10 |          0 |          5 |         15 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\repository\UsuarioCursoRepository.java         | Java            |         12 |          0 |         10 |         22 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\AuthService.java                       | Java            |        121 |          0 |         26 |        147 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\ComentarioService.java                 | Java            |        145 |          2 |         42 |        189 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\CursoService.java                      | Java            |         76 |          2 |         29 |        107 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\LeccionService.java                    | Java            |         79 |         26 |         26 |        131 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\TipocomentarioService.java             | Java            |         72 |          0 |         19 |         91 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\UserService.java                       | Java            |        189 |          0 |         34 |        223 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\UsertypeService.java                   | Java            |         75 |          0 |         18 |         93 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\java\net\ausiasmarch\cuprodemy\service\UsuarioCursoService.java               | Java            |         72 |         22 |         19 |        113 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\main\resources\application.properties                                              | Java Properties |         17 |          4 |          6 |         27 |
+| c:\Users\nerea\Escritorio\SpringBoot\cuprodemy\src\test\java\net\ausiasmarch\cuprodemy\CuprodemyApplicationTests.java                 | Java            |          9 |          0 |          5 |         14 |
+| Total                                                                                                                                 |                 |      2,320 |         65 |        786 |      3,171 |
++---------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
